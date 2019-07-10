@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Faces.Net.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.Xml;
 
 namespace Faces.Net
 {
@@ -23,9 +25,6 @@ namespace Faces.Net
         public Eye[] Eyes { get; set; }
         public Nose Nose { get; set; }
         public Mouth Mouth { get; set; }
-
-        public double Fatness { get; set; }
-        public Color SkinColor { get; set; }
 
         public void SetNose(int id, LR lr, double cx, double cy, double size, bool flip, double? posY = null)
         {
@@ -49,45 +48,11 @@ namespace Faces.Net
     public abstract class FaceBase
     {
         public int Id { get; set; }
-    }
 
-    public class Head : FaceBase
-    {
-    }
+        public double Fatness { get; set; }
+        public Color SkinColor { get; set; }
 
-    public class Eyebrow : FaceBase
-    {
-        public double CX { get; set; }
-        public double CY { get; set; }
-        public LR LR { get; set; }
-    }
-
-    public class Eye : FaceBase
-    {
-        public double CX { get; set; }
-        public double CY { get; set; }
-        public LR LR { get; set; }
-        public double Angle { get; set; }
-    }
-
-    public class Nose : FaceBase
-    {
-        public double CX { get; set; }
-        public double CY { get; set; }
-        public LR LR { get; set; }
-        public double Size { get; set; }
-        public double? PosY { get; set; }
-        public bool Flip { get; set; }
-    }
-
-    public class Mouth : FaceBase
-    {
-        public double CX { get; set; }
-        public double CY { get; set; }
-    }
-
-    public class Hair : FaceBase
-    {
+        public abstract void Render(XmlDocument document, XmlElement paper, int width, int height);
     }
 
     public enum LR
